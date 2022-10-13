@@ -20,7 +20,7 @@ namespace SimpleTextEditor
         private void Form1_Load_1(object sender, EventArgs e)
         {
             textBox.Width = Width;
-            textBox.Height = Height;   
+            textBox.Height = Height;
         }
         // ---------------------
         // Dropdown Menu Actions
@@ -28,42 +28,34 @@ namespace SimpleTextEditor
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void cutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -79,12 +71,11 @@ namespace SimpleTextEditor
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
             var myAbout = new myAboutBox();
-            myAbout.ShowDialog();   
+            myAbout.ShowDialog();
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void toolStripTextBox1_Click(object sender, EventArgs e)
@@ -97,6 +88,5 @@ namespace SimpleTextEditor
         // -----------------------
         // Side Strip Menu Actions
         // -----------------------
-
     }
 }

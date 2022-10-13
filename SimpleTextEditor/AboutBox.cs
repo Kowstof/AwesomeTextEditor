@@ -9,17 +9,17 @@ using System.Windows.Forms;
 
 namespace SimpleTextEditor
 {
-    partial class myAboutBox : Form
+    internal partial class myAboutBox : Form
     {
         public myAboutBox()
         {
             InitializeComponent();
-            this.Text = String.Format("About :)");
-            this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
-            this.labelCopyright.Text = AssemblyCopyright;
-            this.labelCompanyName.Text = AssemblyCompany;
-            this.textBoxDescription.Text = AssemblyDescription;
+            Text = string.Format("About :)");
+            labelProductName.Text = AssemblyProduct;
+            labelVersion.Text = string.Format("Version {0}", AssemblyVersion);
+            labelCopyright.Text = AssemblyCopyright;
+            labelCompanyName.Text = AssemblyCompany;
+            textBoxDescription.Text = AssemblyDescription;
         }
 
         #region Assembly Attribute Accessors
@@ -28,36 +28,27 @@ namespace SimpleTextEditor
         {
             get
             {
-                var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+                var attributes = Assembly.GetExecutingAssembly()
+                    .GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
                 if (attributes.Length > 0)
                 {
                     var titleAttribute = (AssemblyTitleAttribute)attributes[0];
-                    if (titleAttribute.Title != "")
-                    {
-                        return titleAttribute.Title;
-                    }
+                    if (titleAttribute.Title != "") return titleAttribute.Title;
                 }
+
                 return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
             }
         }
 
-        public string AssemblyVersion
-        {
-            get
-            {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            }
-        }
+        public string AssemblyVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         public string AssemblyDescription
         {
             get
             {
-                var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
+                var attributes = Assembly.GetExecutingAssembly()
+                    .GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
+                if (attributes.Length == 0) return "";
                 return ((AssemblyDescriptionAttribute)attributes[0]).Description;
             }
         }
@@ -66,11 +57,9 @@ namespace SimpleTextEditor
         {
             get
             {
-                var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
+                var attributes = Assembly.GetExecutingAssembly()
+                    .GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+                if (attributes.Length == 0) return "";
                 return ((AssemblyProductAttribute)attributes[0]).Product;
             }
         }
@@ -79,11 +68,9 @@ namespace SimpleTextEditor
         {
             get
             {
-                var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
+                var attributes = Assembly.GetExecutingAssembly()
+                    .GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+                if (attributes.Length == 0) return "";
                 return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
             }
         }
@@ -92,19 +79,18 @@ namespace SimpleTextEditor
         {
             get
             {
-                var attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
+                var attributes = Assembly.GetExecutingAssembly()
+                    .GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+                if (attributes.Length == 0) return "";
                 return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }
         }
+
         #endregion
 
         private void okButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }
