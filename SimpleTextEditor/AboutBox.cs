@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleTextEditor
 {
-    internal partial class myAboutBox : Form
+    internal partial class MyAboutBox : Form
     {
-        public myAboutBox()
+        public MyAboutBox()
         {
             InitializeComponent();
             Text = string.Format("About :)");

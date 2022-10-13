@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleTextEditor
@@ -15,7 +9,7 @@ namespace SimpleTextEditor
         private readonly List<User> _users;
         private readonly UserList _userList;
 
-        private bool _uFilled, _pFilled, _p2Filled, _fFilled, _lFilled = false;
+        private bool _uFilled, _pFilled, _p2Filled, _fFilled, _lFilled;
         public NewUserScreen(List<User> users, UserList userList)
         {
             _users = users;

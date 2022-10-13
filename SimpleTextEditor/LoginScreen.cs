@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SimpleTextEditor
@@ -38,7 +32,7 @@ namespace SimpleTextEditor
                 Hide();
             }
             else
-                MessageBox.Show("Incorrect username or password!", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(@"Incorrect username or password!", @"Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Stop);
         }
 
         private void NewUserButton_Click(object sender, EventArgs e)
