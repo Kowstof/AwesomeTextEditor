@@ -68,7 +68,7 @@ namespace SimpleTextEditor
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            myAboutBox about = new myAboutBox();
+            var about = new myAboutBox();
             about.ShowDialog();
         }
 
@@ -78,7 +78,7 @@ namespace SimpleTextEditor
 
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
-            myAboutBox myAbout = new myAboutBox();
+            var myAbout = new myAboutBox();
             myAbout.ShowDialog();   
         }
 
@@ -89,7 +89,7 @@ namespace SimpleTextEditor
 
         private void toolStripTextBox1_Click(object sender, EventArgs e)
         {
-            FontDialog fontDialog = new FontDialog();
+            var fontDialog = new FontDialog();
             fontDialog.ShowDialog();
         }
 

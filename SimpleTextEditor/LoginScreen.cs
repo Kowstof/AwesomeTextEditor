@@ -27,14 +27,14 @@ namespace SimpleTextEditor
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            TextEditor editor = new TextEditor();
+            var editor = new TextEditor();
             editor.Show();
             this.Hide();
         }
 
         private void NewUserButton_Click(object sender, EventArgs e)
         {
-            NewUserScreen newUser = new NewUserScreen();
+            var newUser = new NewUserScreen();
             newUser.Show();
             this.Hide();
         }

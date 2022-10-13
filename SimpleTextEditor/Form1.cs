@@ -30,7 +30,7 @@ namespace SimpleTextEditor
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-            LoginScreen login = new LoginScreen();
+            var login = new LoginScreen();
             login.Show();
         }
     }
