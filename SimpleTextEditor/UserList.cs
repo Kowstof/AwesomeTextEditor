@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleTextEditor
 {
-    internal class UserList
+    public class UserList
     {
-        private List<User> _users;
+        private readonly List<User> _users;
 
         public UserList(List<User> users)
         {
@@ -23,7 +21,7 @@ namespace SimpleTextEditor
             foreach (var line in file)
             {
                 var accountData = new string[6];
-                for (var i = 0; i < line.Length; i++) accountData[i] = line.Split(',')[i];
+                for (var i = 0; i < 6; i++) accountData[i] = line.Split(',')[i];
 
                 var userName = accountData[0];
                 var password = accountData[1];
@@ -37,9 +35,19 @@ namespace SimpleTextEditor
             }
         }
 
-        public void WriteUser(User newUser)
+        private static void WriteUser(User newUser)
         {
             File.AppendAllText("login.txt", newUser + Environment.NewLine);
+        }
+
+        public User Validate(string userName, string password)
+        {
+            return _users.FirstOrDefault(user => user.Validate(userName, password));
+        }
+
+        public bool IsUsernameUnique(string username)
+        {
+            return !(_users.Any(user => user.UserName == username));
         }
     }
 }

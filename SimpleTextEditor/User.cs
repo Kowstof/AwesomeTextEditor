@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SimpleTextEditor
 {
-    internal class User
+    public class User
     {
-        private string UserName { get; }
+        public string UserName { get; }
         private string Password { get; }
         private string UserType { get; }
         private string FirstName { get; }
@@ -29,6 +29,11 @@ namespace SimpleTextEditor
         public override string ToString()
         {
             return $"{UserName},{Password},{UserType},{FirstName},{LastName},{DateOfBirth}";
+        }
+
+        public bool Validate(string userName, string password)
+        {
+            return userName == UserName && password == Password;
         }
     }
 }

@@ -14,9 +14,13 @@ namespace SimpleTextEditor
         [STAThread]
         private static void Main()
         {
+            var users = new List<User>();
+            var userList = new UserList(users);
+            userList.LoadUsers();
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginScreen());
+            Application.Run(new LoginScreen(users, userList));
         }
     }
 }
