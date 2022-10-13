@@ -10,11 +10,28 @@ using System.Windows.Forms;
 
 namespace SimpleTextEditor
 {
-  public partial class Form1 : Form
-  {
-    public Form1()
+    public partial class NewUserScreen : Form
     {
-      InitializeComponent();
+        public NewUserScreen()
+        {
+            InitializeComponent();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            LoginScreen login = new LoginScreen();
+            login.Show();
+        }
     }
-  }
 }

@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SimpleTextEditor")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Krystof's Awesome Text Editor!")]
+[assembly: AssemblyDescription("This is a simple text editor I made! It might not be the fanciest thing ever, but it gets the job done. I'm quite happy with the way it looks, looks like it would fit right into Windows 11!")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SimpleTextEditor")]
-[assembly: AssemblyCopyright("Copyright ©  2022")]
+[assembly: AssemblyCompany("UTS - Erin's Tutorial 3")]
+[assembly: AssemblyProduct("Krystof's Awesome Text Editor!")]
+[assembly: AssemblyCopyright("Krystof Pavlis - 14184004")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyVersion("2.3.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
