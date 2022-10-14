@@ -16,7 +16,11 @@ namespace SimpleTextEditor
             _userList = userList;
             InitializeComponent();
         }
-
+        
+        // -------------
+        // Load Defaults
+        // -------------
+        
         private void NewUserScreen_Load(object sender, EventArgs e)
         {
             usernameWarningLabel.Hide();
@@ -24,9 +28,29 @@ namespace SimpleTextEditor
             dobWarningLabel.Hide();
             userTypeComboBox.SelectedIndex = 0;
         }
+        
+        // -------
+        // Buttons
+        // -------
 
         private void submitButton_Click(object sender, EventArgs e)
         {
+            var username = usernameTextBox.Text;
+            var password = passwordTextBox.Text;
+            var firstName = FirstNameTextBox.Text;
+            var lastName = LastNameTextBox.Text;
+            var dobRaw = dobDatePicker.Value.ToString("dd-MM-yyyy");
+            var dob = DateTime.ParseExact(dobRaw, "dd-MM-yyyy", null);
+            var type = userTypeComboBox.GetItemText(userTypeComboBox.SelectedItem);
+                
+            var newUser = new User(username, password, type, firstName, lastName, dob);
+            _users.Add(newUser);
+            _userList.WriteUser(newUser);
+
+            MessageBox.Show($@"{firstName} {lastName} has been added to the user list. Please login using your set credentials", @"User Successfully Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Close();
+            var login = new LoginScreen(_users, _userList);
+            login.Show();
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -35,6 +59,10 @@ namespace SimpleTextEditor
             var login = new LoginScreen(_users, _userList);
             login.Show();
         }
+        
+        // ---------
+        // Live Form
+        // ---------
 
         private void usernameTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -62,9 +90,7 @@ namespace SimpleTextEditor
         {
             ComparePasswords();
         }
-
-
-
+        
         private void ComparePasswords()
         {
             CheckForm();

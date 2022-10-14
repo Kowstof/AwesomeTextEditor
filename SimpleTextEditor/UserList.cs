@@ -35,7 +35,7 @@ namespace SimpleTextEditor
             }
         }
 
-        private static void WriteUser(User newUser)
+        public void WriteUser(User newUser)
         {
             File.AppendAllText("login.txt", newUser + Environment.NewLine);
         }
