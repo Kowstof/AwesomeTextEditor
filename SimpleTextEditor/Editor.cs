@@ -5,8 +5,10 @@ namespace SimpleTextEditor
 {
     public partial class TextEditor : Form
     {
-        public TextEditor()
+        private readonly Form _login;
+        public TextEditor(Form login)
         {
+            _login = login;
             InitializeComponent();
         }
 
@@ -81,5 +83,9 @@ namespace SimpleTextEditor
         // -----------------------
         // Side Strip Menu Actions
         // -----------------------
+        private void TextEditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _login.Show();
+        }
     }
 }

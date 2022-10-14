@@ -27,7 +27,7 @@ namespace SimpleTextEditor
         {
             if (_userList.Validate(userNameTextBox.Text, passwordTextBox.Text) != null)
             {
-                var editor = new TextEditor();
+                var editor = new TextEditor(this);
                 editor.Show();
                 Hide();
             }
@@ -37,18 +37,12 @@ namespace SimpleTextEditor
 
         private void NewUserButton_Click(object sender, EventArgs e)
         {
-            var newUser = new NewUserScreen(_users, _userList);
+            var newUser = new NewUserScreen(_users, _userList, this);
             newUser.Show();
             Hide();
         }
 
-        private void LoginButtonStatusCheck()
-        {
-            if (userNameTextBox.Text != "" && passwordTextBox.Text != "")
-                LoginButton.Enabled = true;
-            else
-                LoginButton.Enabled = false;
-        }
+        // Validate fields aren't empty
 
         private void userNameTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -58,6 +52,14 @@ namespace SimpleTextEditor
         private void passwordTextBox_TextChanged(object sender, EventArgs e)
         {
             LoginButtonStatusCheck();
+        }
+        
+        private void LoginButtonStatusCheck()
+        {
+            if (userNameTextBox.Text != "" && passwordTextBox.Text != "")
+                LoginButton.Enabled = true;
+            else
+                LoginButton.Enabled = false;
         }
     }
 }

@@ -166,9 +166,7 @@
             // userTypeComboBox
             // 
             this.userTypeComboBox.FormattingEnabled = true;
-            this.userTypeComboBox.Items.AddRange(new object[] {
-            "View",
-            "Edit"});
+            this.userTypeComboBox.Items.AddRange(new object[] { "View", "Edit" });
             this.userTypeComboBox.Location = new System.Drawing.Point(144, 188);
             this.userTypeComboBox.Name = "userTypeComboBox";
             this.userTypeComboBox.Size = new System.Drawing.Size(99, 21);
@@ -251,10 +249,10 @@
             this.Controls.Add(this.usernameTextBox);
             this.Name = "NewUserScreen";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewUser_FormClosing);
             this.Load += new System.EventHandler(this.NewUserScreen_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion

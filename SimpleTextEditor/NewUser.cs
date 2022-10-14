@@ -8,12 +8,14 @@ namespace SimpleTextEditor
     {
         private readonly List<User> _users;
         private readonly UserList _userList;
+        private readonly Form _login;
 
         private bool _uFilled, _pFilled, _p2Filled, _fFilled, _lFilled;
-        public NewUserScreen(List<User> users, UserList userList)
+        public NewUserScreen(List<User> users, UserList userList, Form login)
         {
             _users = users;
             _userList = userList;
+            _login = login;
             InitializeComponent();
         }
         
@@ -56,8 +58,11 @@ namespace SimpleTextEditor
         private void backButton_Click(object sender, EventArgs e)
         {
             Close();
-            var login = new LoginScreen(_users, _userList);
-            login.Show();
+        }
+
+        private void NewUser_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _login.Show();
         }
         
         // ---------
