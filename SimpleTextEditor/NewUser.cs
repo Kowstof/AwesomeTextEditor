@@ -8,14 +8,14 @@ namespace SimpleTextEditor
     {
         private readonly List<User> _users;
         private readonly UserList _userList;
-        private readonly Form _login;
+        private readonly LoginScreen _loginForm;
 
         private bool _uFilled, _pFilled, _p2Filled, _fFilled, _lFilled;
-        public NewUserScreen(List<User> users, UserList userList, Form login)
+        public NewUserScreen(List<User> users, UserList userList, LoginScreen loginForm)
         {
             _users = users;
             _userList = userList;
-            _login = login;
+            _loginForm = loginForm;
             InitializeComponent();
         }
         
@@ -51,8 +51,7 @@ namespace SimpleTextEditor
 
             MessageBox.Show($@"{firstName} {lastName} has been added to the user list. Please login using your set credentials", @"User Successfully Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
-            var login = new LoginScreen(_users, _userList);
-            login.Show();
+            _loginForm.Show();
         }
 
         private void backButton_Click(object sender, EventArgs e)
@@ -62,7 +61,8 @@ namespace SimpleTextEditor
 
         private void NewUser_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _login.Show();
+            _loginForm.Clear();
+            _loginForm.Show();
         }
         
         // ---------

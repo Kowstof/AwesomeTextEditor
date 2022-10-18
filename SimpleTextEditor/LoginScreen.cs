@@ -25,9 +25,10 @@ namespace SimpleTextEditor
 
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            if (_userList.Validate(userNameTextBox.Text, passwordTextBox.Text) != null)
+            var user = _userList.Validate(userNameTextBox.Text, passwordTextBox.Text);
+            if (user != null)
             {
-                var editor = new TextEditor(this);
+                var editor = new TextEditor(this, user);
                 editor.Show();
                 Hide();
             }
@@ -60,6 +61,12 @@ namespace SimpleTextEditor
                 LoginButton.Enabled = true;
             else
                 LoginButton.Enabled = false;
+        }
+
+        public void Clear()
+        {
+            userNameTextBox.Clear();
+            passwordTextBox.Clear();
         }
     }
 }
