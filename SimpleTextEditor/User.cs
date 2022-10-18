@@ -6,7 +6,7 @@ namespace SimpleTextEditor
     {
         public string UserName { get; }
         private string Password { get; }
-        private string UserType { get; }
+        public string UserType { get; }
         private string FirstName { get; }
         private string LastName { get; }
         private DateTime DateOfBirth { get; }

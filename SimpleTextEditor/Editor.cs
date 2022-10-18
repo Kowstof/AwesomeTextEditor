@@ -26,6 +26,7 @@ namespace SimpleTextEditor
             textArea.Height = Height;
             fontDropdown.Text = textArea.Font.Name;
             userNameLabel.Text = @"User: " + _user.UserName;
+            if (_user.UserType == "View") textArea.ReadOnly = true;
         }
         
         private void TextEditor_FormClosing(object sender, FormClosingEventArgs e)
@@ -161,6 +162,8 @@ namespace SimpleTextEditor
         {
             var openDialog = new OpenFileDialog();
             openDialog.Filter = "Rich Text Files (*.rtf)|*.rtf|Text Files (*.txt)|*.txt";
+            openDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openDialog.RestoreDirectory = true;
 
             if (openDialog.ShowDialog() != DialogResult.OK || openDialog.FileName.Length <= 0) return;
             switch (openDialog.FilterIndex)
@@ -180,7 +183,7 @@ namespace SimpleTextEditor
             saveDialog.Filter = "Rich Text File (*.rtf)|*.rtf|Text File (*.txt)|*.txt";
             saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             saveDialog.OverwritePrompt = true;
-            saveDialog.ShowDialog();
+            saveDialog.RestoreDirectory = true;
             
             if (saveDialog.ShowDialog() != DialogResult.OK || saveDialog.FileName.Length <= 0) return;
             switch (saveDialog.FilterIndex)
