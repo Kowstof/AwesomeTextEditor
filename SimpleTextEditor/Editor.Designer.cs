@@ -355,6 +355,7 @@
             // 
             // textArea
             // 
+            this.textArea.Font = new System.Drawing.Font("Segoe UI Variable Static Text", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textArea.Location = new System.Drawing.Point(27, 52);
             this.textArea.Name = "textArea";
             this.textArea.Size = new System.Drawing.Size(773, 398);

@@ -9,6 +9,7 @@ namespace SimpleTextEditor
     {
         private readonly LoginScreen _loginForm;
         private readonly User _user;
+        private string _filePath = "";
         public TextEditor(LoginScreen loginForm, User user)
         {
             _loginForm = loginForm;
@@ -108,11 +109,12 @@ namespace SimpleTextEditor
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFile();
+            Save();
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveAs();
         }
 
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -166,18 +168,25 @@ namespace SimpleTextEditor
             openDialog.RestoreDirectory = true;
 
             if (openDialog.ShowDialog() != DialogResult.OK || openDialog.FileName.Length <= 0) return;
+            _filePath = openDialog.FileName;
             switch (openDialog.FilterIndex)
             {
                 case 1: // .rtf files
-                    textArea.LoadFile(openDialog.FileName);
+                    textArea.LoadFile(_filePath);
                     break;
                 case 2: // .txt files
-                    textArea.LoadFile(openDialog.FileName, RichTextBoxStreamType.PlainText);
+                    textArea.LoadFile(_filePath, RichTextBoxStreamType.PlainText);
                     break;
             }
         }
 
-        private void SaveFile()
+        private void Save()
+        {
+            if (_filePath == "") SaveAs();
+            else SaveFile();
+        }
+
+        private void SaveAs()
         {
             var saveDialog = new SaveFileDialog();
             saveDialog.Filter = "Rich Text File (*.rtf)|*.rtf|Text File (*.txt)|*.txt";
@@ -186,16 +195,22 @@ namespace SimpleTextEditor
             saveDialog.RestoreDirectory = true;
             
             if (saveDialog.ShowDialog() != DialogResult.OK || saveDialog.FileName.Length <= 0) return;
-            switch (saveDialog.FilterIndex)
+            _filePath = saveDialog.FileName;
+            SaveFile();
+        }
+
+        private void SaveFile()
+        {
+            var ext = Path.GetExtension(_filePath);
+            switch (ext)
             {
-                case 1: // save as .rtf
-                    textArea.SaveFile(saveDialog.FileName);
+                case ".rtf":
+                    textArea.SaveFile(_filePath);
                     break;
-                case 2: // save as .txt
-                    textArea.SaveFile(saveDialog.FileName, RichTextBoxStreamType.PlainText);
+                case ".txt":
+                    textArea.SaveFile(_filePath, RichTextBoxStreamType.PlainText);
                     break;
             }
-            
         }
     }
 }
