@@ -26,7 +26,7 @@ namespace SimpleTextEditor
             textArea.Width = Width;
             textArea.Height = Height;
             fontDropdown.Text = textArea.Font.Name;
-            userNameLabel.Text = @"User: " + _user.UserName;
+            userNameLabel.Text = $@"User: {_user.UserName} ({_user.UserType})";
             if (_user.UserType == "View") textArea.ReadOnly = true;
         }
         
@@ -38,12 +38,30 @@ namespace SimpleTextEditor
         
         private void textArea_SelectionChanged(object sender, EventArgs e)
         {
-            UpdateLabels();
+            try { UpdateLabels(); }
+            catch (NullReferenceException){} 
+            // if the selection doesn't have a singular font, it can't return a value. 
+            // this throws an exception, but if we just catch it, it's fine
         }
         
         // ----------------------
         // Top Strip Menu Actions
         // ----------------------
+        
+        private void openButton_Click(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            Save();
+        }
+
+        private void saveAsButton_Click(object sender, EventArgs e)
+        {
+            SaveAs();
+        }
 
         private void boldButton_Click(object sender, EventArgs e)
         {
@@ -68,9 +86,7 @@ namespace SimpleTextEditor
         
         private void fontComboBox_Click(object sender, EventArgs e)
         {
-            var fontDialog = new FontDialog();
-            fontDialog.ShowDialog();
-            //fontDialog.Apply += new FileSystemEventHandler();
+            UpdateFont();
         }
 
 
@@ -155,9 +171,13 @@ namespace SimpleTextEditor
             fontDropdown.Text = textArea.SelectionFont.Name;
         }
 
-        private void UpdateFont(Font font)
+        private void UpdateFont()
         {
-            textArea.SelectionFont = font;
+            var fontDialog = new FontDialog();
+            fontDialog.FontMustExist = true;
+            
+            if (fontDialog.ShowDialog() != DialogResult.OK) return;
+            textArea.SelectionFont = fontDialog.Font;
         }
 
         private void OpenFile()

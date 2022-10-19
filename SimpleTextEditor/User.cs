@@ -24,7 +24,7 @@ namespace SimpleTextEditor
         
         public override string ToString()
         {
-            return $"{UserName},{Password},{UserType},{FirstName},{LastName},{DateOfBirth.ToString("dd-MM-yyyy")}";
+            return $"{UserName},{Password},{UserType},{FirstName},{LastName},{DateOfBirth:dd-MM-yyyy}";
         }
 
         public bool Validate(string userName, string password)
