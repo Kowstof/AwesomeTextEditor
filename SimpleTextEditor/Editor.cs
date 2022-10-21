@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
@@ -28,7 +27,15 @@ namespace SimpleTextEditor
             textArea.Height = Height;
             fontDropdown.Text = textArea.Font.Name;
             userNameLabel.Text = $@"User: {_user.UserName} ({_user.UserType})";
-            if (_user.UserType == "View") textArea.ReadOnly = true;
+            
+            if (_user.UserType == "View")
+            {
+                textArea.ReadOnly = true;
+                boldButton.Enabled = false;
+                italicButton.Enabled = false;
+                underlineButton.Enabled = false;
+                fontDropdown.Enabled = false;
+            }
         }
 
         private void TextEditor_FormClosing(object sender, FormClosingEventArgs e)
