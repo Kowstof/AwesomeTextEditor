@@ -35,7 +35,7 @@ namespace SimpleTextEditor
             }
             else
             {
-                MessageBox.Show(@"Incorrect username or password!", @"Login Failed", MessageBoxButtons.OK,
+                MessageBox.Show("Incorrect username or password!", "Login Failed", MessageBoxButtons.OK,
                     MessageBoxIcon.Stop);
             }
         }

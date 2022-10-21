@@ -47,7 +47,7 @@ namespace SimpleTextEditor
 
         public bool IsUsernameUnique(string username)
         {
-            return !_users.Any(user => user.UserName == username);
+            return _users.All(user => user.UserName != username);
         }
     }
 }

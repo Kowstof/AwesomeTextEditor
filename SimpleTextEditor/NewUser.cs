@@ -51,8 +51,8 @@ namespace SimpleTextEditor
             _userList.WriteUser(newUser);
 
             MessageBox.Show(
-                $@"{firstName} {lastName} has been added to the user list. Please login using your set credentials",
-                @"User Successfully Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                $"{firstName} {lastName} has been added to the user list. Please login using your set credentials",
+                "User Successfully Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
             _loginForm.Show();
         }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SimpleTextEditor
@@ -26,7 +28,7 @@ namespace SimpleTextEditor
             textArea.Width = Width;
             textArea.Height = Height;
             fontDropdown.Text = textArea.Font.Name;
-            userNameLabel.Text = $@"User: {_user.UserName} ({_user.UserType})";
+            userNameLabel.Text = $"User: {_user.UserName} ({_user.UserType})";
             
             if (_user.UserType == "View")
             {
@@ -40,8 +42,15 @@ namespace SimpleTextEditor
 
         private void TextEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _loginForm.Clear();
-            _loginForm.Show();
+            CheckForChanges();
+            if (new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close")) // was Close() called via logout button?
+            {
+                _loginForm.Clear();
+                _loginForm.Show();
+            }
+            else // ...or was the 'X' pressed? thus terminating application
+                _loginForm.Close();
+            
         }
 
         private void textArea_SelectionChanged(object sender, EventArgs e)
@@ -176,7 +185,7 @@ namespace SimpleTextEditor
 
         private void UpdateLabels()
         {
-            if (textArea.SelectionFont == null)
+            if (textArea.SelectionFont == null) // i.e. if the selection has more than one font
             {
                 boldButton.Checked = false;
                 italicButton.Checked = false;
@@ -262,13 +271,35 @@ namespace SimpleTextEditor
 
         private void CheckForChanges()
         {
-            if (_filePath == "")
+            if (_filePath == "" && textArea.Text == "") return; // if file is not saved anywhere, but it has no text
+            if (!IsFileChanged()) return; // if the file is saved, but no changes have been made
+            
+            var result = MessageBox.Show("You have unsaved changes. Would you like to save this file?",
+                "File not saved",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (result != DialogResult.Yes) return;
+            Save();
+            MessageBox.Show("File saved successfully.", "File Saved", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+
+        private bool IsFileChanged()
+        {
+            if (_filePath == "") return true;
+            
+            var existingFile = File.ReadAllText(_filePath);
+            var currentText = "";
+            switch (Path.GetExtension(_filePath))
             {
-                var result = MessageBox.Show("You have unsaved changes. Would you like to save this file?",
-                    "File not saved",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                if (result == DialogResult.Yes) Save();
+                case ".rtf":
+                    currentText = textArea.Rtf;
+                    break;
+                case ".txt":
+                    textArea.SaveFile("tempFile.txt", RichTextBoxStreamType.PlainText); // no other way of removing RTF encoding for comparison
+                    currentText = File.ReadAllText("tempFile.txt");
+                    break;
             }
+            return !string.Equals(existingFile, currentText, StringComparison.InvariantCulture);
         }
     }
 }
