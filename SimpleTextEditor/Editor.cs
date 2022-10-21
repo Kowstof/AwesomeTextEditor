@@ -72,24 +72,23 @@ namespace SimpleTextEditor
 
         private void boldButton_Click(object sender, EventArgs e)
         {
-            textArea.SelectionFont = new Font(textArea.SelectionFont, textArea.SelectionFont.Style ^ FontStyle.Bold);
+            textArea.SetSelectionBold(boldButton.Checked);
         }
 
         private void italicButton_Click(object sender, EventArgs e)
         {
-            textArea.SelectionFont = new Font(textArea.SelectionFont, textArea.SelectionFont.Style ^ FontStyle.Italic);
+            textArea.SetSelectionItalic(italicButton.Checked);
         }
 
         private void underlineButton_Click(object sender, EventArgs e)
         {
-            textArea.SelectionFont =
-                new Font(textArea.SelectionFont, textArea.SelectionFont.Style ^ FontStyle.Underline);
+            textArea.SetSelectionUnderline(underlineButton.Checked);
         }
 
         private void helpButton_Click(object sender, EventArgs e)
         {
-            var myAbout = new MyAboutBox();
-            myAbout.ShowDialog();
+            var aboutDialog = new MyAboutBox();
+            aboutDialog.ShowDialog();
         }
 
         private void fontComboBox_Click(object sender, EventArgs e)

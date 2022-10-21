@@ -424,7 +424,7 @@
         private System.Windows.Forms.ToolStripButton cutButton;
         private System.Windows.Forms.ToolStripButton copyButton;
         private System.Windows.Forms.ToolStripButton pasteButton;
-        private System.Windows.Forms.RichTextBox textArea;
+        private RicherTextBox1 textArea;
         private System.Windows.Forms.ToolStripComboBox fontDropdown;
     }
 }

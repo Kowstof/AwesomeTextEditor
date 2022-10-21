@@ -18,4 +18,6 @@ worked properly.
 
 The creator of the original code is credited and linked correctly. Using others' code is, I'd say, a pretty
 fundamental part of programming (what is a library but someone else's code?). This extension is also something
-that I believe I could do myself, given a day or two at most. I feel all that together justifies my use of it :)
+that I believe I could do myself, given a day or two at most. Lastly, I actually modified the original code:
+Initially it had separate functions for toggling the styles on or off, but I combined them into one, with a 
+boolean flag. I feel all that together justifies my use of it :)

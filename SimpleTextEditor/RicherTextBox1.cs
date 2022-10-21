@@ -57,36 +57,21 @@ namespace SimpleTextEditor
 			SendMessage(new HandleRef(this, Handle), EM_SETCHARFORMAT, SCF_SELECTION, ref fmt);
 			}
 
-		public void SetSelectionBoldOn()
+		public void SetSelectionBold(bool on)
 			{
-			ApplyStyle( CFM_BOLD, true );
+			ApplyStyle( CFM_BOLD, on);
 			}
 
-		public void SetSelectionBoldOff()
+		public void SetSelectionItalic(bool on)
 			{
-			ApplyStyle( CFM_BOLD, false );
+			ApplyStyle( CFM_ITALIC, on );
 			}
 
-		public void SetSelectionItalicOn()
+		public void SetSelectionUnderline(bool on)
 			{
-			ApplyStyle( CFM_ITALIC, true );
+			ApplyStyle( CFM_UNDERLINE, on);
 			}
 
-		public void SetSelectionItalicOff()
-			{
-			ApplyStyle( CFM_ITALIC, false );
-			}
-
-		public void SetSelectionUnderlineOn()
-			{
-			ApplyStyle( CFM_UNDERLINE, true );
-			}
-
-		public void SetSelectionUnderlineOff()
-			{
-			ApplyStyle( CFM_UNDERLINE, false );
-			}
-			
 		private void ApplyStyle( uint style, bool on )
 			{
 			CHARFORMAT fmt = new CHARFORMAT();
