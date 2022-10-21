@@ -46,11 +46,7 @@ namespace SimpleTextEditor
 
         private void textArea_SelectionChanged(object sender, EventArgs e)
         {
-            try
-            {
-                UpdateLabels();
-            }
-            catch (NullReferenceException) {}
+            UpdateLabels();
         }
 
         // ----------------------
@@ -180,14 +176,14 @@ namespace SimpleTextEditor
 
         private void UpdateLabels()
         {
-            /*if (textArea.SelectionFont == null)
+            if (textArea.SelectionFont == null)
             {
                 boldButton.Checked = false;
                 italicButton.Checked = false;
                 underlineButton.Checked = false;
                 fontDropdown.Text = "[Multiple Fonts]";
                 return;
-            }*/
+            }
 
             boldButton.Checked = textArea.SelectionFont.Bold;
             italicButton.Checked = textArea.SelectionFont.Italic;
