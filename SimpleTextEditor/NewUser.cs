@@ -11,6 +11,7 @@ namespace SimpleTextEditor
         private readonly LoginScreen _loginForm;
 
         private bool _uFilled, _pFilled, _p2Filled, _fFilled, _lFilled;
+
         public NewUserScreen(List<User> users, UserList userList, LoginScreen loginForm)
         {
             _users = users;
@@ -18,11 +19,11 @@ namespace SimpleTextEditor
             _loginForm = loginForm;
             InitializeComponent();
         }
-        
+
         // -------------
         // Load Defaults
         // -------------
-        
+
         private void NewUserScreen_Load(object sender, EventArgs e)
         {
             usernameWarningLabel.Hide();
@@ -30,7 +31,7 @@ namespace SimpleTextEditor
             dobWarningLabel.Hide();
             userTypeComboBox.SelectedIndex = 0;
         }
-        
+
         // -------
         // Buttons
         // -------
@@ -44,12 +45,14 @@ namespace SimpleTextEditor
             var dobRaw = dobDatePicker.Value.ToString("dd-MM-yyyy");
             var dob = DateTime.ParseExact(dobRaw, "dd-MM-yyyy", null);
             var type = userTypeComboBox.GetItemText(userTypeComboBox.SelectedItem);
-                
+
             var newUser = new User(username, password, type, firstName, lastName, dob);
             _users.Add(newUser);
             _userList.WriteUser(newUser);
 
-            MessageBox.Show($@"{firstName} {lastName} has been added to the user list. Please login using your set credentials", @"User Successfully Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(
+                $@"{firstName} {lastName} has been added to the user list. Please login using your set credentials",
+                @"User Successfully Created", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Close();
             _loginForm.Show();
         }
@@ -64,7 +67,7 @@ namespace SimpleTextEditor
             _loginForm.Clear();
             _loginForm.Show();
         }
-        
+
         // ---------
         // Live Form
         // ---------
@@ -95,7 +98,7 @@ namespace SimpleTextEditor
         {
             ComparePasswords();
         }
-        
+
         private void ComparePasswords()
         {
             CheckForm();
@@ -112,7 +115,8 @@ namespace SimpleTextEditor
             _fFilled = FirstNameTextBox.Text.Length != 0;
             _lFilled = LastNameTextBox.Text.Length != 0;
 
-            if (_uFilled && _pFilled && _p2Filled && _fFilled && _lFilled && !usernameWarningLabel.Visible && !passwordWarningLabel.Visible && !dobWarningLabel.Visible)
+            if (_uFilled && _pFilled && _p2Filled && _fFilled && _lFilled && !usernameWarningLabel.Visible &&
+                !passwordWarningLabel.Visible && !dobWarningLabel.Visible)
                 submitButton.Enabled = true;
             else submitButton.Enabled = false;
         }

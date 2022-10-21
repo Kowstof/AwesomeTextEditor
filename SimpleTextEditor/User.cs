@@ -21,7 +21,7 @@ namespace SimpleTextEditor
             LastName = lastName;
             DateOfBirth = dateOfBirth;
         }
-        
+
         public override string ToString()
         {
             return $"{UserName},{Password},{UserType},{FirstName},{LastName},{DateOfBirth:dd-MM-yyyy}";

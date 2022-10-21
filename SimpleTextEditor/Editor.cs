@@ -10,17 +10,18 @@ namespace SimpleTextEditor
         private readonly LoginScreen _loginForm;
         private readonly User _user;
         private string _filePath = "";
+
         public TextEditor(LoginScreen loginForm, User user)
         {
             _loginForm = loginForm;
             _user = user;
             InitializeComponent();
         }
-        
+
         // --------------
         // General Events
         // --------------
-        
+
         private void Form1_Load_1(object sender, EventArgs e)
         {
             textArea.Width = Width;
@@ -29,25 +30,31 @@ namespace SimpleTextEditor
             userNameLabel.Text = $@"User: {_user.UserName} ({_user.UserType})";
             if (_user.UserType == "View") textArea.ReadOnly = true;
         }
-        
+
         private void TextEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             _loginForm.Clear();
             _loginForm.Show();
         }
-        
+
         private void textArea_SelectionChanged(object sender, EventArgs e)
         {
-            try { UpdateLabels(); }
-            catch (NullReferenceException){} 
-            // if the selection doesn't have a singular font, it can't return a value. 
-            // this throws an exception, but if we just catch it, it's fine
+            try
+            {
+                UpdateLabels();
+            }
+            catch (NullReferenceException) {}
         }
-        
+
         // ----------------------
         // Top Strip Menu Actions
         // ----------------------
-        
+
+        private void newFileButton_Click(object sender, EventArgs e)
+        {
+            NewFile();
+        }
+
         private void openButton_Click(object sender, EventArgs e)
         {
             OpenFile();
@@ -67,23 +74,24 @@ namespace SimpleTextEditor
         {
             textArea.SelectionFont = new Font(textArea.SelectionFont, textArea.SelectionFont.Style ^ FontStyle.Bold);
         }
-        
+
         private void italicButton_Click(object sender, EventArgs e)
         {
             textArea.SelectionFont = new Font(textArea.SelectionFont, textArea.SelectionFont.Style ^ FontStyle.Italic);
         }
-        
+
         private void underlineButton_Click(object sender, EventArgs e)
         {
-            textArea.SelectionFont = new Font(textArea.SelectionFont, textArea.SelectionFont.Style ^ FontStyle.Underline);
+            textArea.SelectionFont =
+                new Font(textArea.SelectionFont, textArea.SelectionFont.Style ^ FontStyle.Underline);
         }
-        
+
         private void helpButton_Click(object sender, EventArgs e)
         {
             var myAbout = new MyAboutBox();
             myAbout.ShowDialog();
         }
-        
+
         private void fontComboBox_Click(object sender, EventArgs e)
         {
             UpdateFont();
@@ -93,7 +101,7 @@ namespace SimpleTextEditor
         // -----------------------
         // Side Strip Menu Actions
         // -----------------------
-        
+
         private void cutButton_Click(object sender, EventArgs e)
         {
             textArea.Cut();
@@ -108,14 +116,15 @@ namespace SimpleTextEditor
         {
             textArea.Paste();
         }
-        
-        
+
+
         // ---------------------
         // Dropdown Menu Actions
         // ---------------------
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            NewFile();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -162,9 +171,18 @@ namespace SimpleTextEditor
         // ---------------------
         // Functions
         // ---------------------
-        
+
         private void UpdateLabels()
         {
+            /*if (textArea.SelectionFont == null)
+            {
+                boldButton.Checked = false;
+                italicButton.Checked = false;
+                underlineButton.Checked = false;
+                fontDropdown.Text = "[Multiple Fonts]";
+                return;
+            }*/
+
             boldButton.Checked = textArea.SelectionFont.Bold;
             italicButton.Checked = textArea.SelectionFont.Italic;
             underlineButton.Checked = textArea.SelectionFont.Underline;
@@ -175,7 +193,7 @@ namespace SimpleTextEditor
         {
             var fontDialog = new FontDialog();
             fontDialog.FontMustExist = true;
-            
+
             if (fontDialog.ShowDialog() != DialogResult.OK) return;
             textArea.SelectionFont = fontDialog.Font;
         }
@@ -213,7 +231,7 @@ namespace SimpleTextEditor
             saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             saveDialog.OverwritePrompt = true;
             saveDialog.RestoreDirectory = true;
-            
+
             if (saveDialog.ShowDialog() != DialogResult.OK || saveDialog.FileName.Length <= 0) return;
             _filePath = saveDialog.FileName;
             SaveFile();
@@ -230,6 +248,24 @@ namespace SimpleTextEditor
                 case ".txt":
                     textArea.SaveFile(_filePath, RichTextBoxStreamType.PlainText);
                     break;
+            }
+        }
+
+        private void NewFile()
+        {
+            var newFile = new TextEditor(_loginForm, _user);
+            newFile.Show();
+            Dispose(false);
+        }
+
+        private void CheckForChanges()
+        {
+            if (_filePath == "")
+            {
+                var result = MessageBox.Show("You have unsaved changes. Would you like to save this file?",
+                    "File not saved",
+                    MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (result == DialogResult.Yes) Save();
             }
         }
     }

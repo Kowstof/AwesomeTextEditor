@@ -46,7 +46,7 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.topToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.newFileButton = new System.Windows.Forms.ToolStripButton();
             this.openButton = new System.Windows.Forms.ToolStripButton();
             this.saveButton = new System.Windows.Forms.ToolStripButton();
             this.saveAsButton = new System.Windows.Forms.ToolStripButton();
@@ -62,7 +62,7 @@
             this.cutButton = new System.Windows.Forms.ToolStripButton();
             this.copyButton = new System.Windows.Forms.ToolStripButton();
             this.pasteButton = new System.Windows.Forms.ToolStripButton();
-            this.textArea = new System.Windows.Forms.RichTextBox();
+            this.textArea = new RicherTextBox1();
             this.menuStrip1.SuspendLayout();
             this.topToolStrip.SuspendLayout();
             this.sideToolStrip.SuspendLayout();
@@ -193,22 +193,23 @@
             // topToolStrip
             // 
             this.topToolStrip.BackColor = System.Drawing.Color.White;
-            this.topToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.toolStripButton1, this.openButton, this.saveButton, this.saveAsButton, this.toolStripSeparator1, this.boldButton, this.italicButton, this.underlineButton, this.fontDropdown, this.toolStripButton8, this.toolStripSeparator2, this.userNameLabel });
+            this.topToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.newFileButton, this.openButton, this.saveButton, this.saveAsButton, this.toolStripSeparator1, this.boldButton, this.italicButton, this.underlineButton, this.fontDropdown, this.toolStripButton8, this.toolStripSeparator2, this.userNameLabel });
             this.topToolStrip.Location = new System.Drawing.Point(0, 24);
             this.topToolStrip.Name = "topToolStrip";
             this.topToolStrip.Size = new System.Drawing.Size(800, 25);
             this.topToolStrip.TabIndex = 1;
             this.topToolStrip.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // newFileButton
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.ToolTipText = "New File";
+            this.newFileButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.newFileButton.Image = ((System.Drawing.Image)(resources.GetObject("newFileButton.Image")));
+            this.newFileButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.newFileButton.Name = "newFileButton";
+            this.newFileButton.Size = new System.Drawing.Size(23, 22);
+            this.newFileButton.Text = "toolStripButton1";
+            this.newFileButton.ToolTipText = "New File";
+            this.newFileButton.Click += new System.EventHandler(this.newFileButton_Click);
             // 
             // openButton
             // 
@@ -408,7 +409,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStrip topToolStrip;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton newFileButton;
         private System.Windows.Forms.ToolStripButton openButton;
         private System.Windows.Forms.ToolStripButton saveButton;
         private System.Windows.Forms.ToolStripButton saveAsButton;

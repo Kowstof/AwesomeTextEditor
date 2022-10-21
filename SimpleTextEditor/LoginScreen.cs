@@ -8,6 +8,7 @@ namespace SimpleTextEditor
     {
         private readonly List<User> _users;
         private readonly UserList _userList;
+
         public LoginScreen(List<User> users, UserList userList)
         {
             InitializeComponent();
@@ -33,7 +34,10 @@ namespace SimpleTextEditor
                 Hide();
             }
             else
-                MessageBox.Show(@"Incorrect username or password!", @"Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            {
+                MessageBox.Show(@"Incorrect username or password!", @"Login Failed", MessageBoxButtons.OK,
+                    MessageBoxIcon.Stop);
+            }
         }
 
         private void NewUserButton_Click(object sender, EventArgs e)
@@ -54,7 +58,7 @@ namespace SimpleTextEditor
         {
             LoginButtonStatusCheck();
         }
-        
+
         private void LoginButtonStatusCheck()
         {
             if (userNameTextBox.Text != "" && passwordTextBox.Text != "")
