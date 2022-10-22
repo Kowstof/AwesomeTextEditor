@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -27,8 +29,13 @@ namespace SimpleTextEditor
         {
             textArea.Width = Width;
             textArea.Height = Height;
-            fontDropdown.Text = textArea.Font.Name;
+
             userNameLabel.Text = $"User: {_user.UserName} ({_user.UserType})";
+            fontDropdown.ComboBox.DrawMode = DrawMode.OwnerDrawFixed;
+            fontDropdown.ComboBox.DrawItem += fontDropdown_DrawItem;
+            var installedFontList = FontFamily.Families.ToList();
+            var fontNameList = installedFontList.Select(font => font.Name).ToList();
+            fontDropdown.ComboBox.DataSource = fontNameList;
             
             if (_user.UserType == "View")
             {
@@ -50,7 +57,20 @@ namespace SimpleTextEditor
             }
             else // ...or was the 'X' pressed? thus terminating application
                 _loginForm.Close();
-            
+        }
+        
+        private void fontDropdown_DrawItem(object sender, DrawItemEventArgs e) 
+        {
+            var fontName = (string)fontDropdown.Items[e.Index];
+            var font = new Font(fontName, fontDropdown.Font.Size);
+            e.DrawBackground();
+            e.Graphics.DrawString(fontName, font, Brushes.Black, e.Bounds.X, e.Bounds.Y);
+        }
+
+        private void fontDropdown_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textArea.SelectionFont = new Font(fontDropdown.Text, textArea.SelectionFont.Size);
+            UpdateLabels();
         }
 
         private void textArea_SelectionChanged(object sender, EventArgs e)
@@ -102,12 +122,6 @@ namespace SimpleTextEditor
             var aboutDialog = new MyAboutBox();
             aboutDialog.ShowDialog();
         }
-
-        private void fontComboBox_Click(object sender, EventArgs e)
-        {
-            UpdateFont();
-        }
-
 
         // -----------------------
         // Side Strip Menu Actions
@@ -191,6 +205,7 @@ namespace SimpleTextEditor
                 italicButton.Checked = false;
                 underlineButton.Checked = false;
                 fontDropdown.Text = "[Multiple Fonts]";
+                fontDropdown.Font = new Font("Segoe UI", fontDropdown.Font.Size);
                 return;
             }
 
@@ -198,6 +213,7 @@ namespace SimpleTextEditor
             italicButton.Checked = textArea.SelectionFont.Italic;
             underlineButton.Checked = textArea.SelectionFont.Underline;
             fontDropdown.Text = textArea.SelectionFont.Name;
+            fontDropdown.Font = new Font(textArea.SelectionFont.Name, fontDropdown.Font.Size);
         }
 
         private void UpdateFont()
@@ -301,5 +317,7 @@ namespace SimpleTextEditor
             }
             return !string.Equals(existingFile, currentText, StringComparison.InvariantCulture);
         }
+
+        
     }
 }
