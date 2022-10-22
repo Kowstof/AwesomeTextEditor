@@ -30,6 +30,7 @@ namespace SimpleTextEditor
             passwordWarningLabel.Hide();
             dobWarningLabel.Hide();
             userTypeComboBox.SelectedIndex = 0;
+            MaximizeBox = false;
         }
 
         // -------

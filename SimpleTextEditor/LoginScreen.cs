@@ -15,6 +15,12 @@ namespace SimpleTextEditor
             _users = users;
             _userList = userList;
         }
+
+        private void LoginScreen_Load(object sender, EventArgs e)
+        {
+            MaximizeBox = false;
+        }
+
         // --------------
         // Button Actions
         // --------------
@@ -72,5 +78,7 @@ namespace SimpleTextEditor
             userNameTextBox.Clear();
             passwordTextBox.Clear();
         }
+
+        
     }
 }

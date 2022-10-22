@@ -77,7 +77,10 @@ namespace SimpleTextEditor
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.White;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.fileToolStripMenuItem, this.editToolStripMenuItem, this.helpToolStripMenuItem });
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
@@ -86,7 +89,14 @@ namespace SimpleTextEditor
             // 
             // fileToolStripMenuItem
             // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.newToolStripMenuItem, this.openToolStripMenuItem, this.toolStripMenuItem1, this.saveToolStripMenuItem, this.saveAsToolStripMenuItem, this.toolStripMenuItem2, this.logoutToolStripMenuItem });
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newToolStripMenuItem,
+            this.openToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.logoutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -127,7 +137,8 @@ namespace SimpleTextEditor
             // 
             this.saveAsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveAsToolStripMenuItem.Image")));
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) | System.Windows.Forms.Keys.S)));
+            this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+            | System.Windows.Forms.Keys.S)));
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
@@ -148,7 +159,10 @@ namespace SimpleTextEditor
             // 
             // editToolStripMenuItem
             // 
-            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.cutToolStripMenuItem, this.copyToolStripMenuItem, this.pasteToolStripMenuItem });
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cutToolStripMenuItem,
+            this.copyToolStripMenuItem,
+            this.pasteToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -158,7 +172,7 @@ namespace SimpleTextEditor
             this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
             // 
@@ -167,7 +181,7 @@ namespace SimpleTextEditor
             this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
@@ -176,13 +190,14 @@ namespace SimpleTextEditor
             this.pasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem.Image")));
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.aboutToolStripMenuItem });
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
@@ -192,7 +207,7 @@ namespace SimpleTextEditor
             this.aboutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("aboutToolStripMenuItem.Image")));
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.aboutToolStripMenuItem.Text = "About...";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -202,7 +217,23 @@ namespace SimpleTextEditor
             this.topToolStrip.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.topToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.topToolStrip.ImageScalingSize = new System.Drawing.Size(26, 26);
-            this.topToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.newFileButton, this.openButton, this.saveButton, this.saveAsButton, this.toolStripSeparator1, this.boldButton, this.italicButton, this.underlineButton, this.toolStripSeparator3, this.toolStripLabel1, this.fontDropdown, this.toolStripLabel2, this.toolStripComboBox1, this.toolStripSeparator2, this.userNameLabel, this.toolStripButton8 });
+            this.topToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newFileButton,
+            this.openButton,
+            this.saveButton,
+            this.saveAsButton,
+            this.toolStripSeparator1,
+            this.boldButton,
+            this.italicButton,
+            this.underlineButton,
+            this.toolStripSeparator3,
+            this.toolStripLabel1,
+            this.fontDropdown,
+            this.toolStripLabel2,
+            this.toolStripComboBox1,
+            this.toolStripSeparator2,
+            this.userNameLabel,
+            this.toolStripButton8});
             this.topToolStrip.Location = new System.Drawing.Point(0, 24);
             this.topToolStrip.Name = "topToolStrip";
             this.topToolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 1, 7);
@@ -327,6 +358,7 @@ namespace SimpleTextEditor
             this.toolStripLabel1.AutoSize = false;
             this.toolStripLabel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.BackgroundImage")));
             this.toolStripLabel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.toolStripLabel1.Margin = new System.Windows.Forms.Padding(3, 1, 0, 2);
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(30, 30);
             this.toolStripLabel1.ToolTipText = "Change Font";
@@ -335,7 +367,7 @@ namespace SimpleTextEditor
             // 
             this.fontDropdown.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.fontDropdown.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.fontDropdown.BackColor = System.Drawing.SystemColors.Control;
+            this.fontDropdown.BackColor = System.Drawing.SystemColors.Window;
             this.fontDropdown.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.fontDropdown.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fontDropdown.Name = "fontDropdown";
@@ -355,7 +387,7 @@ namespace SimpleTextEditor
             // 
             // toolStripComboBox1
             // 
-            this.toolStripComboBox1.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStripComboBox1.BackColor = System.Drawing.SystemColors.Window;
             this.toolStripComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.toolStripComboBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripComboBox1.Margin = new System.Windows.Forms.Padding(1);
@@ -392,7 +424,10 @@ namespace SimpleTextEditor
             this.sideToolStrip.Dock = System.Windows.Forms.DockStyle.Left;
             this.sideToolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.sideToolStrip.ImageScalingSize = new System.Drawing.Size(26, 26);
-            this.sideToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.cutButton, this.copyButton, this.pasteButton });
+            this.sideToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cutButton,
+            this.copyButton,
+            this.pasteButton});
             this.sideToolStrip.Location = new System.Drawing.Point(0, 64);
             this.sideToolStrip.Name = "sideToolStrip";
             this.sideToolStrip.Size = new System.Drawing.Size(31, 386);
@@ -437,7 +472,8 @@ namespace SimpleTextEditor
             // 
             // textArea
             // 
-            this.textArea.Font = new System.Drawing.Font("Segoe UI Variable Static Text", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textArea.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textArea.Location = new System.Drawing.Point(34, 64);
             this.textArea.Name = "textArea";
             this.textArea.Size = new System.Drawing.Size(773, 384);
@@ -467,6 +503,7 @@ namespace SimpleTextEditor
             this.sideToolStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
