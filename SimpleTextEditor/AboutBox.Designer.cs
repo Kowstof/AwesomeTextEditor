@@ -138,8 +138,7 @@
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
             this.textBoxDescription.Text = "This is a simple text editor I made! It might not be the fanciest thing ever, but" +
-    " it gets the job done. I\'m quite happy with the way it looks, looks like it woul" +
-    "d fit right into Windows 11!";
+    " it gets the job done. I\'m quite happy with the way it looks :D\r\n";
             // 
             // okButton
             // 
