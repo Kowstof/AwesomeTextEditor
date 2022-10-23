@@ -31,6 +31,7 @@ namespace SimpleTextEditor
             dobWarningLabel.Hide();
             userTypeComboBox.SelectedIndex = 0;
             MaximizeBox = false;
+            dobDatePicker.Value = DateTime.Today.AddDays(-1);
         }
 
         // -------
@@ -93,19 +94,35 @@ namespace SimpleTextEditor
         private void passwordTextBox_TextChanged(object sender, EventArgs e)
         {
             ComparePasswords();
+            CheckForm();
+        }
+
+        private void dobDatePicker_ValueChanged(object sender, EventArgs e)
+        {
+            CheckDate();
+            CheckForm();
         }
 
         private void passwordTextBox2_TextChanged(object sender, EventArgs e)
         {
             ComparePasswords();
+            CheckForm();
         }
 
         private void ComparePasswords()
         {
-            CheckForm();
             if (_pFilled && _p2Filled && passwordTextBox2.Text != passwordTextBox.Text)
                 passwordWarningLabel.Show();
             else passwordWarningLabel.Hide();
+        }
+
+        private void CheckDate()
+        {
+            var today = DateTime.Today;
+            var enteredDate = dobDatePicker.Value;
+            if (enteredDate >= today)
+                dobWarningLabel.Show();
+            else dobWarningLabel.Hide();
         }
 
         private void CheckForm()

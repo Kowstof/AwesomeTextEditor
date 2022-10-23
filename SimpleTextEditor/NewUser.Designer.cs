@@ -179,9 +179,11 @@
             this.dobDatePicker.Size = new System.Drawing.Size(120, 23);
             this.dobDatePicker.TabIndex = 5;
             this.dobDatePicker.Value = new System.DateTime(2022, 10, 14, 1, 7, 14, 0);
+            this.dobDatePicker.ValueChanged += new System.EventHandler(this.dobDatePicker_ValueChanged);
             // 
             // userTypeComboBox
             // 
+            this.userTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.userTypeComboBox.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userTypeComboBox.FormattingEnabled = true;
             this.userTypeComboBox.Items.AddRange(new object[] {
@@ -244,9 +246,9 @@
             this.dobWarningLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(72)))), ((int)(((byte)(72)))));
             this.dobWarningLabel.Location = new System.Drawing.Point(153, 469);
             this.dobWarningLabel.Name = "dobWarningLabel";
-            this.dobWarningLabel.Size = new System.Drawing.Size(128, 13);
+            this.dobWarningLabel.Size = new System.Drawing.Size(126, 13);
             this.dobWarningLabel.TabIndex = 5;
-            this.dobWarningLabel.Text = "Some calendar warning";
+            this.dobWarningLabel.Text = "Are you a time traveler?";
             // 
             // pictureBox1
             // 
