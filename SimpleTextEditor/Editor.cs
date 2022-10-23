@@ -51,6 +51,7 @@ namespace SimpleTextEditor
                 italicButton.Enabled = false;
                 underlineButton.Enabled = false;
                 fontDropdown.Enabled = false;
+                fontSizeComboBox.Enabled = false;
             }
         }
 

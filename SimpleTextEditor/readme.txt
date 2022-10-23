@@ -1,8 +1,17 @@
-﻿Krystof's Tantalising Text Editor!
+﻿==================================
+Krystof's Tantalising Text Editor!
+=-_****************************_-=
+
+Info
+--------------------
+Name: Krystof Pavlis
+ID: 14184004
+Erin's 3pm Monday Tut
 
 Logins
 --------------------
-cal | 123
+cal | 123 (Edit)
+user1 | password123 (View)
 
 Code Extensions
 --------------------
