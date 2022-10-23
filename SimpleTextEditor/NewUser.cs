@@ -31,7 +31,7 @@ namespace SimpleTextEditor
             dobWarningLabel.Hide();
             userTypeComboBox.SelectedIndex = 0;
             MaximizeBox = false;
-            dobDatePicker.Value = DateTime.Today.AddDays(-1);
+            dobDatePicker.Value = DateTime.Today;
         }
 
         // -------
@@ -118,9 +118,8 @@ namespace SimpleTextEditor
 
         private void CheckDate()
         {
-            var today = DateTime.Today;
             var enteredDate = dobDatePicker.Value;
-            if (enteredDate >= today)
+            if (enteredDate > DateTime.Today)
                 dobWarningLabel.Show();
             else dobWarningLabel.Hide();
         }
