@@ -60,10 +60,9 @@ namespace SimpleTextEditor
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.fontDropdown = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
+            this.fontSizeComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.userNameLabel = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.sideToolStrip = new System.Windows.Forms.ToolStrip();
             this.cutButton = new System.Windows.Forms.ToolStripButton();
             this.copyButton = new System.Windows.Forms.ToolStripButton();
@@ -230,10 +229,9 @@ namespace SimpleTextEditor
             this.toolStripLabel1,
             this.fontDropdown,
             this.toolStripLabel2,
-            this.toolStripComboBox1,
+            this.fontSizeComboBox,
             this.toolStripSeparator2,
-            this.userNameLabel,
-            this.toolStripButton8});
+            this.userNameLabel});
             this.topToolStrip.Location = new System.Drawing.Point(0, 24);
             this.topToolStrip.Name = "topToolStrip";
             this.topToolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 1, 7);
@@ -367,11 +365,14 @@ namespace SimpleTextEditor
             // 
             this.fontDropdown.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.fontDropdown.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.fontDropdown.AutoSize = false;
             this.fontDropdown.BackColor = System.Drawing.SystemColors.Window;
+            this.fontDropdown.DropDownWidth = 210;
             this.fontDropdown.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.fontDropdown.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fontDropdown.Name = "fontDropdown";
-            this.fontDropdown.Size = new System.Drawing.Size(150, 33);
+            this.fontDropdown.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
+            this.fontDropdown.Size = new System.Drawing.Size(150, 28);
             this.fontDropdown.ToolTipText = "Change Font";
             this.fontDropdown.SelectedIndexChanged += new System.EventHandler(this.fontDropdown_SelectedIndexChanged);
             // 
@@ -385,15 +386,34 @@ namespace SimpleTextEditor
             this.toolStripLabel2.Size = new System.Drawing.Size(30, 30);
             this.toolStripLabel2.ToolTipText = "Font Size";
             // 
-            // toolStripComboBox1
+            // fontSizeComboBox
             // 
-            this.toolStripComboBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.toolStripComboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.toolStripComboBox1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.toolStripComboBox1.Margin = new System.Windows.Forms.Padding(1);
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.Size = new System.Drawing.Size(75, 31);
-            this.toolStripComboBox1.ToolTipText = "Font Size";
+            this.fontSizeComboBox.AutoSize = false;
+            this.fontSizeComboBox.BackColor = System.Drawing.SystemColors.Window;
+            this.fontSizeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.fontSizeComboBox.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fontSizeComboBox.Items.AddRange(new object[] {
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "14",
+            "16",
+            "18",
+            "20",
+            "22",
+            "24",
+            "26",
+            "28",
+            "36",
+            "48",
+            "72"});
+            this.fontSizeComboBox.Margin = new System.Windows.Forms.Padding(1);
+            this.fontSizeComboBox.Name = "fontSizeComboBox";
+            this.fontSizeComboBox.Size = new System.Drawing.Size(55, 25);
+            this.fontSizeComboBox.ToolTipText = "Font Size";
+            this.fontSizeComboBox.TextChanged += new System.EventHandler(this.fontSizeComboBox_TextChanged);
             // 
             // toolStripSeparator2
             // 
@@ -406,18 +426,6 @@ namespace SimpleTextEditor
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(70, 30);
             this.userNameLabel.Text = "User: user";
-            // 
-            // toolStripButton8
-            // 
-            this.toolStripButton8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(30, 30);
-            this.toolStripButton8.Text = "toolStripButton8";
-            this.toolStripButton8.ToolTipText = "About";
-            this.toolStripButton8.Click += new System.EventHandler(this.helpButton_Click);
             // 
             // sideToolStrip
             // 
@@ -532,7 +540,6 @@ namespace SimpleTextEditor
         private System.Windows.Forms.ToolStripButton boldButton;
         private System.Windows.Forms.ToolStripButton italicButton;
         private System.Windows.Forms.ToolStripButton underlineButton;
-        private System.Windows.Forms.ToolStripButton toolStripButton8;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel userNameLabel;
         private System.Windows.Forms.ToolStrip sideToolStrip;
@@ -544,6 +551,6 @@ namespace SimpleTextEditor
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
-        private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
+        private System.Windows.Forms.ToolStripComboBox fontSizeComboBox;
     }
 }

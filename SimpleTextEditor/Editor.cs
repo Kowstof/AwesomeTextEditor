@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -31,11 +30,13 @@ namespace SimpleTextEditor
             textArea.Height = Height;
 
             userNameLabel.Text = $"User: {_user.UserName} ({_user.UserType})";
+            fontSizeComboBox.SelectedIndex = 4; // default font size 12
             fontDropdown.ComboBox.DrawMode = DrawMode.OwnerDrawFixed;
             fontDropdown.ComboBox.DrawItem += fontDropdown_DrawItem;
             var installedFontList = FontFamily.Families.ToList();
             var fontNameList = installedFontList.Select(font => font.Name).ToList();
             fontDropdown.ComboBox.DataSource = fontNameList;
+            fontDropdown.Text = "Segoe UI";
             
             if (_user.UserType == "View")
             {
@@ -69,7 +70,8 @@ namespace SimpleTextEditor
 
         private void fontDropdown_SelectedIndexChanged(object sender, EventArgs e)
         {
-            textArea.SelectionFont = new Font(fontDropdown.Text, textArea.SelectionFont.Size);
+            textArea.SelectionFont.Dispose(); // save those precious resources ;)
+            textArea.SelectionFont = new Font(fontDropdown.Text, Convert.ToInt32(fontSizeComboBox.Text));
             UpdateLabels();
         }
 
@@ -117,11 +119,11 @@ namespace SimpleTextEditor
             textArea.SetSelectionUnderline(underlineButton.Checked);
         }
 
-        private void helpButton_Click(object sender, EventArgs e)
+        private void fontSizeComboBox_TextChanged(object sender, EventArgs e)
         {
-            var aboutDialog = new MyAboutBox();
-            aboutDialog.ShowDialog();
+            UpdateFontSize();
         }
+
 
         // -----------------------
         // Side Strip Menu Actions
@@ -206,6 +208,7 @@ namespace SimpleTextEditor
                 underlineButton.Checked = false;
                 fontDropdown.Text = "[Multiple Fonts]";
                 fontDropdown.Font = new Font("Segoe UI", fontDropdown.Font.Size);
+                fontSizeComboBox.Text = "";
                 return;
             }
 
@@ -214,15 +217,21 @@ namespace SimpleTextEditor
             underlineButton.Checked = textArea.SelectionFont.Underline;
             fontDropdown.Text = textArea.SelectionFont.Name;
             fontDropdown.Font = new Font(textArea.SelectionFont.Name, fontDropdown.Font.Size);
+            fontSizeComboBox.Text = textArea.SelectionFont.SizeInPoints.ToString();
         }
 
-        private void UpdateFont()
+        private void UpdateFontSize()
         {
-            var fontDialog = new FontDialog();
-            fontDialog.FontMustExist = true;
-
-            if (fontDialog.ShowDialog() != DialogResult.OK) return;
-            textArea.SelectionFont = fontDialog.Font;
+            if (textArea.SelectionFont == null)
+            {
+                MessageBox.Show("Sorry, changing the size of multiple fonts at once isn't supported yet!", "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (fontSizeComboBox.Text == "") return;
+            if (!float.TryParse(fontSizeComboBox.Text, out float fontSize)) return;
+            var newFont = ChangeFontSize(textArea.SelectionFont, fontSize);
+            textArea.SelectionFont.Dispose();
+            textArea.SelectionFont = newFont;
         }
 
         private void OpenFile()
@@ -318,6 +327,14 @@ namespace SimpleTextEditor
             return !string.Equals(existingFile, currentText, StringComparison.InvariantCulture);
         }
 
-        
+        private Font ChangeFontSize(Font font, float fontSize)
+        {
+            if (font != null)
+            {
+                float currentSize = font.Size;
+                font = new Font(font.Name, fontSize, font.Style, font.Unit, font.GdiCharSet, font.GdiVerticalFont);
+            }
+            return font;
+        }
     }
 }
