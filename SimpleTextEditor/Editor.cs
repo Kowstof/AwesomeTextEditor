@@ -30,7 +30,7 @@ namespace SimpleTextEditor
             KeyPreview = true;
             textArea.Width = Width;
             textArea.Height = Height;
-            userNameLabel.Text = $"User: {_user.UserName} ({_user.UserType})";
+            userNameLabel.Text = $"{_user.UserName} ({_user.UserType})";
 
 
             // Font dropdown extra prep
@@ -44,6 +44,7 @@ namespace SimpleTextEditor
             // Font size dropdown prep
             fontSizeComboBox.SelectedIndex = 4; // default font size 12
 
+            // Disable controls if user is of view type
             if (_user.UserType == "View")
             {
                 textArea.ReadOnly = true;

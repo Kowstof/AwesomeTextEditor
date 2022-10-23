@@ -62,6 +62,7 @@ namespace SimpleTextEditor
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.fontSizeComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.userNameLabel = new System.Windows.Forms.ToolStripLabel();
             this.sideToolStrip = new System.Windows.Forms.ToolStrip();
             this.cutButton = new System.Windows.Forms.ToolStripButton();
@@ -231,6 +232,7 @@ namespace SimpleTextEditor
             this.toolStripLabel2,
             this.fontSizeComboBox,
             this.toolStripSeparator2,
+            this.toolStripLabel3,
             this.userNameLabel});
             this.topToolStrip.Location = new System.Drawing.Point(0, 24);
             this.topToolStrip.Name = "topToolStrip";
@@ -422,11 +424,21 @@ namespace SimpleTextEditor
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.AutoSize = false;
+            this.toolStripLabel3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStripLabel3.BackgroundImage")));
+            this.toolStripLabel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.toolStripLabel3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(24, 24);
+            this.toolStripLabel3.ToolTipText = "Logged in user";
+            // 
             // userNameLabel
             // 
             this.userNameLabel.Name = "userNameLabel";
-            this.userNameLabel.Size = new System.Drawing.Size(70, 30);
-            this.userNameLabel.Text = "User: user";
+            this.userNameLabel.Size = new System.Drawing.Size(119, 30);
+            this.userNameLabel.Text = "Username (Mode)";
             // 
             // sideToolStrip
             // 
@@ -554,5 +566,6 @@ namespace SimpleTextEditor
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripComboBox fontSizeComboBox;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
     }
 }
