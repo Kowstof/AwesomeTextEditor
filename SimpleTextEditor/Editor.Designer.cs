@@ -482,10 +482,11 @@ namespace SimpleTextEditor
             // textArea
             // 
             this.textArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textArea.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textArea.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textArea.Location = new System.Drawing.Point(34, 64);
+            this.textArea.Location = new System.Drawing.Point(31, 64);
             this.textArea.Name = "textArea";
-            this.textArea.Size = new System.Drawing.Size(773, 384);
+            this.textArea.Size = new System.Drawing.Size(769, 386);
             this.textArea.TabIndex = 3;
             this.textArea.Text = "";
             this.textArea.SelectionChanged += new System.EventHandler(this.textArea_SelectionChanged);

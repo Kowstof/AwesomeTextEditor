@@ -162,7 +162,6 @@ namespace SimpleTextEditor
             textArea.Paste();
         }
 
-
         // ---------------------
         // Dropdown Menu Actions
         // ---------------------
@@ -357,8 +356,10 @@ namespace SimpleTextEditor
         private void NewFile()
         {
             var newFile = new TextEditor(_loginForm, _user);
+            Close();
+            _loginForm.Hide();
             newFile.Show();
-            Dispose(false);
+            
         }
 
         private void CheckForChanges(FormClosingEventArgs e)
