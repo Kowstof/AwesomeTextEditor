@@ -56,7 +56,8 @@ namespace SimpleTextEditor
 
         private void TextEditor_FormClosing(object sender, FormClosingEventArgs e)
         {
-            CheckForChanges();
+            CheckForChanges(e);
+            if (e.Cancel) return;
             if (new StackTrace().GetFrames().Any(x => x.GetMethod().Name == "Close")) // was Close() called via logout button?
             {
                 _loginForm.Clear();
@@ -291,6 +292,12 @@ namespace SimpleTextEditor
             else SaveFile();
         }
 
+        private void Save(FormClosingEventArgs e)
+        {
+            if (_filePath == "") SaveAs(e);
+            else SaveFile();
+        }
+
         private void SaveAs()
         {
             var saveDialog = new SaveFileDialog();
@@ -299,21 +306,50 @@ namespace SimpleTextEditor
             saveDialog.OverwritePrompt = true;
             saveDialog.RestoreDirectory = true;
 
-            if (saveDialog.ShowDialog() != DialogResult.OK || saveDialog.FileName.Length <= 0) return;
+            var result = saveDialog.ShowDialog();
+            if (result != DialogResult.OK || saveDialog.FileName.Length <= 0) return;
             _filePath = saveDialog.FileName;
             SaveFile();
         }
 
-        private void SaveFile()
+        private void SaveAs(FormClosingEventArgs e)
+        {
+            var saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "Rich Text File (*.rtf)|*.rtf|Text File (*.txt)|*.txt";
+            saveDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveDialog.OverwritePrompt = true;
+            saveDialog.RestoreDirectory = true;
+
+            var result = saveDialog.ShowDialog();
+            if  (result == DialogResult.OK)
+            {
+                _filePath = saveDialog.FileName;
+                SaveFile();
+                MessageBox.Show("File saved successfully.", "File Saved", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+            }
+
+            else if (result != DialogResult.OK || saveDialog.FileName.Length <= 0)
+            {
+                e.Cancel = true;
+            }
+            
+        }
+
+        private void SaveFile(bool confirm = false)
         {
             var ext = Path.GetExtension(_filePath);
             switch (ext)
             {
                 case ".rtf":
                     textArea.SaveFile(_filePath);
+                    if (confirm) MessageBox.Show("File saved successfully.", "File Saved", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
                     break;
                 case ".txt":
                     textArea.SaveFile(_filePath, RichTextBoxStreamType.PlainText);
+                    if (confirm) MessageBox.Show("File saved successfully.", "File Saved", MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
                     break;
             }
         }
@@ -325,18 +361,16 @@ namespace SimpleTextEditor
             Dispose(false);
         }
 
-        private void CheckForChanges()
+        private void CheckForChanges(FormClosingEventArgs e)
         {
             if (_filePath == "" && textArea.Text == "") return; // if file is not saved anywhere, but it has no text
             if (!IsFileChanged()) return; // if the file is saved, but no changes have been made
-            
+
             var result = MessageBox.Show("You have unsaved changes. Would you like to save this file?",
                 "File not saved",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
             if (result != DialogResult.Yes) return;
-            Save();
-            MessageBox.Show("File saved successfully.", "File Saved", MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+            Save(e);
         }
 
         private bool IsFileChanged()
@@ -362,7 +396,6 @@ namespace SimpleTextEditor
         {
             if (font != null)
             {
-                float currentSize = font.Size;
                 font = new Font(font.Name, fontSize, font.Style, font.Unit, font.GdiCharSet, font.GdiVerticalFont);
             }
             return font;
