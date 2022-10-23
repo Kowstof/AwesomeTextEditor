@@ -26,18 +26,24 @@ namespace SimpleTextEditor
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
+            // Form properties
+            KeyPreview = true;
             textArea.Width = Width;
             textArea.Height = Height;
-
             userNameLabel.Text = $"User: {_user.UserName} ({_user.UserType})";
-            fontSizeComboBox.SelectedIndex = 4; // default font size 12
+
+
+            // Font dropdown extra prep
             fontDropdown.ComboBox.DrawMode = DrawMode.OwnerDrawFixed;
             fontDropdown.ComboBox.DrawItem += fontDropdown_DrawItem;
             var installedFontList = FontFamily.Families.ToList();
             var fontNameList = installedFontList.Select(font => font.Name).ToList();
             fontDropdown.ComboBox.DataSource = fontNameList;
             fontDropdown.Text = "Segoe UI";
-            
+
+            // Font size dropdown prep
+            fontSizeComboBox.SelectedIndex = 4; // default font size 12
+
             if (_user.UserType == "View")
             {
                 textArea.ReadOnly = true;
@@ -66,13 +72,6 @@ namespace SimpleTextEditor
             var font = new Font(fontName, fontDropdown.Font.Size);
             e.DrawBackground();
             e.Graphics.DrawString(fontName, font, Brushes.Black, e.Bounds.X, e.Bounds.Y);
-        }
-
-        private void fontDropdown_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            textArea.SelectionFont.Dispose(); // save those precious resources ;)
-            textArea.SelectionFont = new Font(fontDropdown.Text, Convert.ToInt32(fontSizeComboBox.Text));
-            UpdateLabels();
         }
 
         private void textArea_SelectionChanged(object sender, EventArgs e)
@@ -119,11 +118,29 @@ namespace SimpleTextEditor
             textArea.SetSelectionUnderline(underlineButton.Checked);
         }
 
-        private void fontSizeComboBox_TextChanged(object sender, EventArgs e)
+        private void fontDropdown_DropDownClosed(object sender, EventArgs e)
+        {
+            if (textArea.SelectionFont != null) textArea.SelectionFont.Dispose(); // save those precious resources ;)
+            var newFont = new Font(fontDropdown.SelectedItem.ToString(), Convert.ToInt32(fontSizeComboBox.Text));
+            textArea.SelectionFont = newFont;
+            UpdateLabels();
+        }
+
+        private void fontSizeComboBox_DropDownClosed(object sender, EventArgs e)
         {
             UpdateFontSize();
         }
 
+        private void fontSizeComboBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) 
+            { 
+                UpdateCustomFontSize();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+
+        }
 
         // -----------------------
         // Side Strip Menu Actions
@@ -208,7 +225,7 @@ namespace SimpleTextEditor
                 underlineButton.Checked = false;
                 fontDropdown.Text = "[Multiple Fonts]";
                 fontDropdown.Font = new Font("Segoe UI", fontDropdown.Font.Size);
-                fontSizeComboBox.Text = "";
+                fontSizeComboBox.Text = "12"; // resets to a default, since they might be different
                 return;
             }
 
@@ -217,6 +234,7 @@ namespace SimpleTextEditor
             underlineButton.Checked = textArea.SelectionFont.Underline;
             fontDropdown.Text = textArea.SelectionFont.Name;
             fontDropdown.Font = new Font(textArea.SelectionFont.Name, fontDropdown.Font.Size);
+            fontDropdown.SelectionLength = 0;
             fontSizeComboBox.Text = textArea.SelectionFont.SizeInPoints.ToString();
         }
 
@@ -228,6 +246,19 @@ namespace SimpleTextEditor
                 return;
             }
             if (fontSizeComboBox.Text == "") return;
+            float.TryParse(fontSizeComboBox.SelectedItem.ToString(), out float fontSize);
+            var newFont = ChangeFontSize(textArea.SelectionFont, fontSize);
+            textArea.SelectionFont.Dispose();
+            textArea.SelectionFont = newFont;
+        }
+
+        private void UpdateCustomFontSize()
+        {
+            if (textArea.SelectionFont == null)
+            {
+                MessageBox.Show("Sorry, changing the size of multiple fonts at once isn't supported yet!", "Uh oh!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             if (!float.TryParse(fontSizeComboBox.Text, out float fontSize)) return;
             var newFont = ChangeFontSize(textArea.SelectionFont, fontSize);
             textArea.SelectionFont.Dispose();

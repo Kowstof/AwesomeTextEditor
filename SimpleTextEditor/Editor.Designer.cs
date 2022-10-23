@@ -374,7 +374,7 @@ namespace SimpleTextEditor
             this.fontDropdown.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
             this.fontDropdown.Size = new System.Drawing.Size(150, 28);
             this.fontDropdown.ToolTipText = "Change Font";
-            this.fontDropdown.SelectedIndexChanged += new System.EventHandler(this.fontDropdown_SelectedIndexChanged);
+            this.fontDropdown.DropDownClosed += new System.EventHandler(this.fontDropdown_DropDownClosed);
             // 
             // toolStripLabel2
             // 
@@ -413,7 +413,8 @@ namespace SimpleTextEditor
             this.fontSizeComboBox.Name = "fontSizeComboBox";
             this.fontSizeComboBox.Size = new System.Drawing.Size(55, 25);
             this.fontSizeComboBox.ToolTipText = "Font Size";
-            this.fontSizeComboBox.TextChanged += new System.EventHandler(this.fontSizeComboBox_TextChanged);
+            this.fontSizeComboBox.DropDownClosed += new System.EventHandler(this.fontSizeComboBox_DropDownClosed);
+            this.fontSizeComboBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.fontSizeComboBox_KeyDown);
             // 
             // toolStripSeparator2
             // 
